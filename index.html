@@ -19,39 +19,43 @@
   <link rel="manifest" href="/site.webmanifest" />
 </head>
 
-<body class="font-sans text-gray-800 antialiased overflow-x-hidden">
+<body class="font-sans text-gray-800 antialiased overflow-x-hidden w-full">
 
   <!-- Global Fixed Background -->
-  <div class="fixed inset-0 z-[-1] bg-cover bg-center scale-110"
+  <div class="fixed inset-0 z-[-1] bg-cover bg-center"
     style="background-image: url('imgs/main_background.png'); filter: blur(8px);">
   </div>
 
   <!-- Section 1: Wedding Announcement -->
-  <section class="sticky top-0 min-h-screen flex flex-col justify-center items-center py-20 z-0">
+  <section class="sticky top-0 min-h-full w-full flex flex-col justify-center items-center py-20 z-0">
 
-    <div class="container mx-auto px-4 relative z-20">
+    <div class="container mx-auto relative z-20">
       <!-- Header spanning full width -->
-      <div class="text-center text-white mb-12" style="text-shadow: 0 4px 8px rgba(0,0,0,0.7);">
-        <h2 class="text-2xl lg:text-4xl tracking-widest mb-6 font-medium">We're Getting Married,</h2>
-        <h1 class="font-serif text-5xl md:text-8xl tracking-tighter font-bold">Save the Date!</h1>
+      <div class="text-center text-white mb-6" style="text-shadow: 0 4px 8px rgba(0,0,0,0.7);">
+        <h2 class="text-2xl sm:text-xl lg:text-4xl tracking-widest mb-6 font-medium">We're Getting <br
+            class="block md:hidden"> Married,</h2>
+        <h1 class="font-serif text-5xl sm:text-2xl md:text-7xl tracking-tighter font-bold">Save the<br
+            class="block md:hidden"> Date!</h1>
       </div>
 
       <!-- 2 Column Grid for Image and Details -->
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid xl:grid-cols-2 lg:grid-cols-1 items-center">
 
         <!-- Column 1: Image -->
-        <div class="flex justify-center lg:justify-end">
-          <img src="imgs/main_foreground.png" alt="Couple"
-            class="max-w-full h-auto rounded-lg shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500"
-            style="max-height: 500px;">
+        <div class="flex justify-center self-center xl:justify-end md:py-10 md:px-5">
+          <img src="imgs/main_foreground.png"
+            class="w-5/6 h-auto rounded-lg shadow-2xl transform rotate-0 hover:rotate-4 transition duration-500">
         </div>
 
         <!-- Column 2: Details -->
-        <div class="text-center lg:text-left text-white" style="text-shadow: 0 4px 8px rgba(0,0,0,0.7);">
-          <p class="text-xl md:text-3xl mb-6 font-medium">Join us for the wedding of</p>
-          <h2 class="font-serif text-4xl md:text-6xl text-wedding-gold mb-6 font-bold"
+        <div class="text-center xl:text-left xl:pl-10 pl-0 lg:text-center text-white"
+          style="text-shadow: 0 4px 8px rgba(0,0,0,0.7);">
+          <p class="text-xl md:text-3xl sm:text-xl mb-6 px-2font-medium">Join us for the wedding of</p>
+          <h2 class="font-serif text-4xl sm:text-2xl md:text-6xl text-wedding-gold mb-6 font-bold"
             style="text-shadow: 0 4px 8px rgba(0,0,0,0.9); -webkit-text-stroke: 1px rgba(0,0,0,0.1);">Briana & Neil</h2>
-          <h2 class="text-5xl md:text-5xl uppercase tracking-widest font-bold">July 18, 2026</h2>
+          <h2 class="text-4xl sm:text-2xl md:text-5xl uppercase tracking-widest font-bold">July 18,<br
+              class="block md:hidden"> 2026
+          </h2>
         </div>
 
       </div>
@@ -60,9 +64,9 @@
 
   <!-- Section 2: Details -->
   <section
-    class="sticky top-0 flex flex-col justify-center py-20 bg-white/95 backdrop-blur-sm shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-10 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl">
+    class="sticky top-0 flex flex-col justify-center py-20 bg-white/95 backdrop-blur-sm shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-10 w-full lg:w-4/5 mx-0 lg:mx-auto rounded-none lg:rounded-xl">
     <div class="container mx-auto">
-      <div class="max-w-6xl mx-auto">
+      <div class="md:max-w-6xl sm:max-w-4/5 mx-auto">
         <h2 class="font-serif text-6xl md:text-7xl text-center mb-16 uppercase font-bold text-gray-800"
           style="text-shadow: 2px 2px 0px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;">
           The Details</h2>
@@ -73,7 +77,7 @@
           </div>
 
           <div class="text-center lg:text-left">
-            <h3 class="font-serif text-3xl text-gray-800 mb-6 font-bold">Our Venue</h3>
+            <h3 class="font-serif text-3xl text-gray-800 mb-6 font-bold px-2px">Our Venue</h3>
             <p class="text-gray-600 mb-8 leading-relaxed text-xl">
               We are tying the knot <strong>on July 18, 2026</strong> at the beautiful <strong>St. John's Catholic
                 Newman
@@ -239,7 +243,7 @@
   </section>
 
   <footer class="relative z-50 bg-gray-50 py-8 text-center text-gray-400 text-sm">
-    <p>Made with &hearts; by <a href="https://github.com/apandit" target="_blank">apandit</a> for Briana & Neil</p>
+    <p>Made with &hearts; by <a href="https://github.com/apandit42" target="_blank">apandit</a> for Briana & Neil</p>
   </footer>
 
   <script src="index.js"></script>
