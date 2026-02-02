@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* Tailwind Configuration */
+@theme {
+    --font-sans: "Noto Sans", sans-serif;
+    --font-serif: "Noto Serif", serif;
+    --color-wedding-gold: #D4AF37;
+    --color-wedding-sage: #8A9A5B;
+}
+
+/* Custom styles */
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
