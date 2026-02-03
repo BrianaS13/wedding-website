@@ -1,252 +1,436 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Briana and Neil Wedding Announcement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="B&N" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Briana and Neil Wedding Announcement</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="B&N" />
-  <link rel="manifest" href="/site.webmanifest" />
-</head>
+  <body
+    class="absolute inset-0 font-sans text-gray-800 antialiased overflow-x-hidden m-0 p-0 w-full max-w-full text-wrap break-normal touch-pan-y"
+  >
+    <!-- Global Fixed Background -->
+    <div
+      class="fixed inset-0 overflow-hidden w-full h-full z-[-1] bg-cover bg-center"
+      style="
+        background-image: url(&quot;imgs/main_background.png&quot;);
+        filter: blur(5px);
+      "
+    ></div>
 
-<body class="font-sans text-gray-800 antialiased overflow-x-hidden w-full">
-
-  <!-- Global Fixed Background -->
-  <div class="fixed inset-0 z-[-1] bg-cover bg-center"
-    style="background-image: url('imgs/main_background.png'); filter: blur(8px);">
-  </div>
-
-  <!-- Section 1: Wedding Announcement -->
-  <section class="sticky top-0 min-h-full w-full flex flex-col justify-center items-center py-20 z-0">
-
-    <div class="container mx-auto relative z-20">
-      <!-- Header spanning full width -->
-      <div class="text-center text-white mb-6" style="text-shadow: 0 4px 8px rgba(0,0,0,0.7);">
-        <h2 class="text-2xl sm:text-xl lg:text-4xl tracking-widest mb-6 font-medium">We're Getting <br
-            class="block md:hidden"> Married,</h2>
-        <h1 class="font-serif text-5xl sm:text-2xl md:text-7xl tracking-tighter font-bold">Save the<br
-            class="block md:hidden"> Date!</h1>
-      </div>
-
-      <!-- 2 Column Grid for Image and Details -->
-      <div class="grid xl:grid-cols-2 lg:grid-cols-1 items-center">
-
-        <!-- Column 1: Image -->
-        <div class="flex justify-center self-center xl:justify-end md:py-10 md:px-5">
-          <img src="imgs/main_foreground.png"
-            class="w-5/6 h-auto rounded-lg shadow-2xl transform rotate-0 hover:rotate-4 transition duration-500">
-        </div>
-
-        <!-- Column 2: Details -->
-        <div class="text-center xl:text-left xl:pl-10 pl-0 lg:text-center text-white"
-          style="text-shadow: 0 4px 8px rgba(0,0,0,0.7);">
-          <p class="text-xl md:text-3xl sm:text-xl mb-6 px-2font-medium">Join us for the wedding of</p>
-          <h2 class="font-serif text-4xl sm:text-2xl md:text-6xl text-wedding-gold mb-6 font-bold"
-            style="text-shadow: 0 4px 8px rgba(0,0,0,0.9); -webkit-text-stroke: 1px rgba(0,0,0,0.1);">Briana & Neil</h2>
-          <h2 class="text-4xl sm:text-2xl md:text-5xl uppercase tracking-widest font-bold">July 18,<br
-              class="block md:hidden"> 2026
+    <!-- Section 1: Wedding Announcement -->
+    <section
+      class="lg:sticky lg:top-0 min-h-fit w-full flex flex-col justify-center items-center py-20 z-0"
+    >
+      <div class="container mx-auto px-6 relative z-20 w-full max-w-full">
+        <div
+          class="text-center text-white mb-6"
+          style="text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7)"
+        >
+          <h2
+            class="text-xl sm:text-2xl lg:text-4xl tracking-widest mb-6 font-medium"
+          >
+            We're Getting <br class="block md:hidden" />
+            Married,
           </h2>
+          <h1
+            class="font-serif text-4xl sm:text-5xl md:text-7xl tracking-tighter font-bold"
+          >
+            Save the<br class="block md:hidden" />
+            Date!
+          </h1>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2: Details -->
-  <section
-    class="sticky top-0 flex flex-col justify-center py-20 bg-white/95 backdrop-blur-sm shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-10 w-full lg:w-4/5 mx-0 lg:mx-auto rounded-none lg:rounded-xl">
-    <div class="container mx-auto">
-      <div class="md:max-w-6xl sm:max-w-4/5 mx-auto">
-        <h2 class="font-serif text-6xl md:text-7xl text-center mb-16 uppercase font-bold text-gray-800"
-          style="text-shadow: 2px 2px 0px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;">
-          The Details</h2>
-
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="h-64 lg:h-96 flex items-center justify-center text-white rounded-lg shadow-2xl overflow-hidden"
-            style="background: url('imgs/stjohn.jpg') center / cover no-repeat;">
+        <div class="grid xl:grid-cols-2 lg:grid-cols-1 items-center gap-10">
+          <div
+            class="flex justify-center self-center xl:justify-end md:py-10 md:px-5"
+          >
+            <img
+              src="imgs/main_foreground.png"
+              class="w-5/6 h-auto rounded-lg shadow-2xl transform rotate-0 hover:rotate-4 transition duration-500"
+            />
           </div>
-
-          <div class="text-center lg:text-left">
-            <h3 class="font-serif text-3xl text-gray-800 mb-6 font-bold px-2px">Our Venue</h3>
-            <p class="text-gray-600 mb-8 leading-relaxed text-xl">
-              We are tying the knot <strong>on July 18, 2026</strong> at the beautiful <strong>St. John's Catholic
-                Newman
-                Center in Champaign, Illinois</strong>, not too far from where we first met at the UIUC campus.
-              Afterwards, we'll be hosting
-              our reception nearby, at <strong>The Venue CU</strong>. We can't wait to celebrate with you!
+          <div
+            class="text-center xl:text-left xl:pl-10 pl-0 lg:text-center text-white"
+            style="text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7)"
+          >
+            <p
+              class="text-xl md:text-3xl sm:text-xl sm:mt-6 mb-6 px-2 font-medium"
+            >
+              Join us for the wedding of
             </p>
-            <div class="space-y-4 mb-6 text-xl">
-              <div>
-                <p class="font-bold">Ceremony Location:</p>
-                <p class="font-semibold text-blue-600"><a href="https://maps.app.goo.gl/J4pG5s9CFpzg2Ntu5"
-                    target="_blank">St. John's Catholic Newman Center</a></p>
-                <p class="text-gray-500">604 East Armory Ave, Champaign, IL 61820</p>
+            <h2
+              class="font-serif text-3xl sm:text-4xl md:text-6xl text-wedding-gold mb-6 font-bold"
+              style="
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+                -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+              "
+            >
+              Briana & Neil
+            </h2>
+            <h2
+              class="text-2xl sm:text-2xl md:text-5xl uppercase tracking-widest font-bold"
+            >
+              July 18,<br class="block md:hidden" />
+              2026
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Details -->
+    <section
+      class="lg:sticky lg:top-0 mb-20 flex flex-col justify-center py-20 bg-white/95 backdrop-blur-sm shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-10 w-full lg:w-4/5 mx-0 lg:mx-auto rounded-none lg:rounded-xl"
+    >
+      <div class="container mx-auto px-6">
+        <div class="md:max-w-6xl sm:max-w-[80%] mx-auto">
+          <h2
+            class="font-serif text-4xl md:text-7xl text-center mb-16 uppercase font-bold text-gray-800"
+            style="
+              text-shadow:
+                2px 2px 0px #fff,
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff;
+            "
+          >
+            The Details
+          </h2>
+
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div
+              class="h-64 lg:h-96 flex items-center justify-center text-white rounded-lg shadow-2xl overflow-hidden"
+              style="
+                background: url(&quot;imgs/stjohn.jpg&quot;) center / cover
+                  no-repeat;
+              "
+            ></div>
+
+            <div class="text-center lg:text-left min-w-0 w-full max-w-full">
+              <h3
+                class="font-serif text-3xl text-gray-800 mb-6 font-bold px-2px"
+              >
+                Our Venue
+              </h3>
+              <p class="text-gray-600 mb-8 leading-relaxed text-lg md:text-xl">
+                We are tying the knot <strong>on July 18, 2026</strong> at the
+                beautiful
+                <strong
+                  >St. John's Catholic Newman Center in Champaign,
+                  Illinois</strong
+                >, the place we first met at the UIUC campus. Afterwards, we'll
+                be hosting our reception nearby, at
+                <strong>The Venue CU</strong>. We can't wait to celebrate with
+                you!
+              </p>
+              <div class="space-y-4 mb-6 text-lg md:text-xl">
+                <div>
+                  <p class="font-bold">Ceremony Location:</p>
+                  <p class="font-semibold text-blue-600">
+                    <a
+                      href="https://maps.app.goo.gl/J4pG5s9CFpzg2Ntu5"
+                      target="_blank"
+                      >St. John's Catholic Newman Center</a
+                    >
+                  </p>
+                  <p class="text-gray-500">
+                    604 East Armory Ave, Champaign, IL 61820
+                  </p>
+                </div>
+                <div>
+                  <p class="font-bold mt-4">Reception Location:</p>
+                  <p class="font-semibold text-blue-600">
+                    <a
+                      href="https://maps.app.goo.gl/7mvzT7cHtw6BEMhc7"
+                      target="_blank"
+                      >The Venue CU</a
+                    >
+                  </p>
+                  <p class="text-gray-500">
+                    51 East Main St, Champaign, IL 61820
+                  </p>
+                </div>
               </div>
-              <div>
-                <p class="font-bold mt-4">Reception Location:</p>
-                <p class="font-semibold text-blue-600"><a href="https://maps.app.goo.gl/7mvzT7cHtw6BEMhc7"
-                    target="_blank">The Venue CU</a></p>
-                <p class="text-gray-500">51 East Main St, Champaign, IL 61820</p>
+              <div class="space-y-2 text-lg">
+                <p class="font-bold">Time:</p>
+                <p>Ceremony: 1:30 PM</p>
+                <p>Reception: <strong>TBD</strong></p>
               </div>
-            </div>
-            <div class="space-y-2 text-lg">
-              <p class="font-bold">Time:</p>
-              <p>Ceremony: 1:30 PM</p>
-              <p>Reception: 6:00 PM</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Section 3: RSVP -->
-  <section
-    class="sticky top-0 min-h-40 flex flex-col justify-center py-20 bg-gray-900 text-white shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-20 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="font-serif text-4xl md:text-6xl uppercase font-bold mb-12"
-          style="-webkit-text-stroke: 1px rgba(255,255,255,0.3); text-shadow: 0 4px 10px rgba(0,0,0,0.5);">RSVP</h2>
-        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto text-gray-300 leading-relaxed">
-          We're so excited to celebrate with you! To help us prepare, please complete this RSVP form!
-        </p>
-        <a href="https://forms.gle/X9ZNJCk67KKjTRRp6" target="_blank"
-          class="inline-block bg-wedding-gold hover:bg-yellow-600 text-white text-xl font-bold py-5 px-12 rounded-full transition duration-300 transform hover:scale-110 shadow-lg border-2 border-transparent hover:border-white">
-          RSVP Now
-        </a>
+    <!-- Section 3: RSVP -->
+    <section
+      class="lg:sticky lg:top-0 mb-20 min-h-96 flex flex-col justify-center py-20 bg-gray-900 text-white shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-20 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl"
+    >
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2
+            class="font-serif text-4xl md:text-7xl text-center mb-16 uppercase font-bold text-white"
+            style="
+              -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+              text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            "
+          >
+            RSVP
+          </h2>
+          <p
+            class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto text-gray-300 leading-relaxed"
+          >
+            We're so excited to celebrate with you! To help us prepare, please
+            complete this RSVP form!
+          </p>
+          <a
+            href="https://forms.gle/X9ZNJCk67KKjTRRp6"
+            target="_blank"
+            class="inline-block bg-wedding-gold hover:bg-yellow-600 text-white text-xl font-bold py-5 px-12 rounded-full transition duration-300 transform hover:scale-110 shadow-lg border-2 border-transparent hover:border-white"
+          >
+            RSVP Now
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Section 4: Hotel Info -->
-  <section
-    class="sticky top-0 flex flex-col justify-center py-20 bg-white/95 backdrop-blur-sm shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-30 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl">
-    <div class="container mx-auto">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="font-serif text-6xl md:text-7xl text-center mb-16 uppercase font-bold text-gray-800"
-          style="text-shadow: 2px 2px 0px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;">
-          Accommodations</h2>
+    <!-- Section 4: Hotel Info -->
+    <section
+      class="lg:sticky lg:top-0 mb-20 flex flex-col justify-center py-20 bg-white/95 backdrop-blur-sm shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-30 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl"
+    >
+      <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="font-serif text-4xl md:text-7xl text-center mb-16 uppercase font-bold text-gray-800"
+            style="
+              text-shadow:
+                2px 2px 0px #fff,
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff;
+            "
+          >
+            Lodgings
+          </h2>
 
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <!-- Placeholder for Hotel Image -->
-          <div class="h-64 lg:h-96 flex items-center justify-center bg-gray-200 rounded-lg shadow-2xl overflow-hidden"
-            style="background: url('imgs/hyatt.webp') center / cover no-repeat;">
-          </div>
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div
+              class="h-64 lg:h-96 flex items-center justify-center bg-gray-200 rounded-lg shadow-2xl overflow-hidden"
+              style="
+                background: url(&quot;imgs/hyatt.webp&quot;) center / cover
+                  no-repeat;
+              "
+            ></div>
 
-          <div class="text-center lg:text-left">
-            <h3 class="font-serif text-3xl text-gray-800 mb-6 font-bold">Hotel Information</h3>
-            <p class="text-gray-600 mb-8 leading-relaxed text-lg">
-              We've reserved a block of rooms at <strong>Hyatt Place Champaign/Urbana</strong> that you can book for
-              your
-              stay for your convenience, located in Downtown Champaign. We recommend staying close to the
-              wedding and reception venues.
-            </p>
+            <div class="text-center lg:text-left min-w-0 w-full max-w-full">
+              <h3 class="font-serif text-3xl text-gray-800 mb-6 font-bold">
+                Hotel Information
+              </h3>
+              <p class="text-gray-600 mb-8 leading-relaxed text-lg md:text-lg">
+                We've reserved a block of rooms at
+                <strong>Hyatt Place Champaign/Urbana</strong> that you can book
+                for your stay for your convenience, located in Downtown
+                Champaign. We recommend staying close to the wedding and
+                reception venues.
+              </p>
 
-            <div class="space-y-4 mb-6 text-lg">
-              <p>
-                <span class="font-bold block mb-1">If you'd like to book a room at Hyatt Place:</span>
-                <a href="https://www.hyatt.com/hyatt-place/en-US/cmizc-hyatt-place-champaign-urbana?corp_id=G-SD26"
-                  target="_blank" class="text-blue-600 hover:underline font-semibold text-xl">Hyatt Place Reservation
-                  Site</a>
-              </p>
-              <p>
-                <span class="font-bold">When bookingat Hyatt Place, provide our Group Code:</span>
-              </p>
-              <p>
-                <span class="font-mono bg-gray-100 px-2 py-1 rounded">G-SD26</span>
-              </p>
-              <p>
-                You can also call the Hyatt Place front desk at <a href="tel:2175312800"
-                  class="text-blue-600 font-semibold">217-531-2800</a>.
-                Select option 0 to reach the staff and ask for the <strong>Sobecks Doherty Wedding Block</strong>.
-              </p>
+              <div class="space-y-4 mb-6 text-lg">
+                <p>
+                  <span class="font-bold block mb-1"
+                    >If you'd like to book a room at Hyatt Place:</span
+                  >
+                  <a
+                    href="https://www.hyatt.com/hyatt-place/en-US/cmizc-hyatt-place-champaign-urbana?corp_id=G-SD26"
+                    target="_blank"
+                    class="text-blue-600 hover:underline font-semibold text-xl"
+                    >Hyatt Place Reservation Site</a
+                  >
+                </p>
+                <p>
+                  <span class="font-bold"
+                    >When bookingat Hyatt Place, provide our Group Code:</span
+                  >
+                </p>
+                <p>
+                  <span class="font-mono bg-gray-100 px-2 py-1 rounded"
+                    >G-SD26</span
+                  >
+                </p>
+                <p>
+                  You can also call the Hyatt Place front desk at
+                  <a href="tel:2175312800" class="text-blue-600 font-semibold"
+                    >217-531-2800</a
+                  >. Select option 0 to reach the staff and ask for the
+                  <strong>Sobecks Doherty Wedding Block</strong>.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <!-- Section 5: About the Couple (Carousel) -->
-  <!-- Section 5: About the Couple (Carousel) -->
-  <section
-    class="sticky top-0 flex flex-col justify-center py-20 bg-gray-900 text-white shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-40 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl">
-    <div class="container mx-auto px-4">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="font-serif text-3xl md:text-5xl text-center mb-4 text-white"
-          style="-webkit-text-stroke: 1px rgba(255,255,255,0.3); text-shadow: 0 4px 10px rgba(0,0,0,0.5);"> About Us
-        </h2>
-        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto text-gray-300 leading-relaxed">
-          Here's some photos of us through the years! Have any photos of us? Send them our way!
-        </p>
-        <div class="relative group max-w-4xl mx-auto">
-          <!-- Carousel Container -->
-          <div class="overflow-hidden rounded-xl shadow-2xl aspect-video relative bg-gray-800">
-            <div id="carousel-track" class="flex transition-transform duration-500 ease-out h-full">
-              <!-- Images will be inserted here or hardcoded -->
-              <div class="min-w-full h-full relative">
-                <img src="imgs/montage_0.png" alt="Couple Photo 1" class="w-full h-full object-cover">
-              </div>
-              <div class="min-w-full h-full relative">
-                <img src="imgs/montage_1.png" alt="Couple Photo 2" class="w-full h-full object-cover">
-              </div>
-              <div class="min-w-full h-full relative">
-                <img src="imgs/montage_2.png" alt="Couple Photo 3" class="w-full h-full object-cover">
-              </div>
-              <div class="min-w-full h-full relative">
-                <img src="imgs/montage_3.png" alt="Couple Photo 4" class="w-full h-full object-cover">
+    <!-- Section 5: About the Couple (Carousel) -->
+    <section
+      class="lg:sticky lg:top-0 flex flex-col justify-center py-20 bg-gray-900 text-white shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-40 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl"
+    >
+      <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+          <h2
+            class="font-serif text-3xl uppercase md:text-5xl text-center mb-4 text-white"
+            style="
+              -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+              text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            "
+          >
+            About Us
+          </h2>
+          <p
+            class="text-xl text-center md:text-2xl mb-12 max-w-2xl mx-auto text-gray-300 leading-relaxed min-w-0 w-full"
+          >
+            Here's some photos of us through the years! Have any photos of us?
+            Send them our way!
+          </p>
+          <div class="relative group max-w-4xl mx-auto">
+            <div
+              class="overflow-hidden rounded-xl shadow-2xl aspect-video relative bg-gray-800"
+            >
+              <div
+                id="carousel-track"
+                class="flex transition-transform duration-500 ease-out h-full"
+              >
+                <div class="min-w-full h-full relative">
+                  <img
+                    src="imgs/montage_0.png"
+                    alt="Couple Photo 1"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="min-w-full h-full relative">
+                  <img
+                    src="imgs/montage_1.png"
+                    alt="Couple Photo 2"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="min-w-full h-full relative">
+                  <img
+                    src="imgs/montage_2.png"
+                    alt="Couple Photo 3"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="min-w-full h-full relative">
+                  <img
+                    src="imgs/montage_3.png"
+                    alt="Couple Photo 4"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="min-w-full h-full relative">
+                  <img
+                    src="imgs/montage_4.png"
+                    alt="Couple Photo 5"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Navigation Buttons -->
-          <button id="prevBtn"
-            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md backdrop-blur-md">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          <button id="nextBtn"
-            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md backdrop-blur-md">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
+            <button
+              id="prevBtn"
+              class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md backdrop-blur-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <button
+              id="nextBtn"
+              class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md backdrop-blur-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
 
-          <!-- Indicators -->
-          <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-            <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
-              data-index="0"></button>
-            <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
-              data-index="1"></button>
-            <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
-              data-index="2"></button>
-            <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
-              data-index="3"></button>
+            <div
+              class="absolute bottom-4 left-0 right-0 flex justify-center gap-2"
+            >
+              <button
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
+                data-index="0"
+              ></button>
+              <button
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
+                data-index="1"
+              ></button>
+              <button
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
+                data-index="2"
+              ></button>
+              <button
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
+                data-index="3"
+              ></button>
+              <button
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors indicator"
+                data-index="4"
+              ></button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="relative z-50 bg-gray-50 py-8 text-center text-gray-400 text-sm">
-    <p>Made with &hearts; by <a href="https://github.com/apandit42" target="_blank">apandit</a> for Briana & Neil</p>
-  </footer>
+    <footer
+      class="relative z-50 bg-gray-50 py-8 px-6 text-center text-gray-400 text-sm w-full"
+    >
+      <p>
+        Made with &hearts; by
+        <a href="https://github.com/apandit42" target="_blank">apandit</a> for
+        Briana & Neil
+      </p>
+    </footer>
 
-  <script src="index.js"></script>
-</body>
-
+    <script src="index.js"></script>
+  </body>
 </html>
