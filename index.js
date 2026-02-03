@@ -79,4 +79,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start
     startAutoplay();
+
+    // --- Easter Egg Logic ---
+    
+    // 1. "GG" Keystroke Listener
+    let lastKeyTitle = '';
+    let lastKeyTime = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        // Check if user is typing in a form element
+        const tag = document.activeElement.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement.isContentEditable) {
+            return;
+        }
+
+        const key = e.key.toLowerCase();
+        const now = Date.now();
+
+        if (key === 'g') {
+            // Check if previous key was also 'g' within a reasonable time (e.g., 2 seconds)
+            if (lastKeyTitle === 'g' && (now - lastKeyTime < 2000)) {
+                window.location.href = 'easteregg.html';
+            }
+            lastKeyTitle = 'g';
+            lastKeyTime = now;
+        } else {
+            lastKeyTitle = '';
+        }
+    });
+
+    // 2. Click "G"s in Lodgings
+    const secretGs = document.querySelectorAll('.secret-g');
+    secretGs.forEach(g => {
+        g.addEventListener('click', () => {
+            window.location.href = 'easteregg.html';
+        });
+    });
 });

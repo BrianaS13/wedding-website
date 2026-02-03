@@ -183,6 +183,7 @@
     >
       <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto text-center">
+
           <h2
             class="font-serif text-4xl md:text-7xl text-center mb-16 uppercase font-bold text-white"
             style="
@@ -198,14 +199,91 @@
             We're so excited to celebrate with you! To help us prepare, please
             complete this RSVP form!
           </p>
-          <a
-            href="https://forms.gle/X9ZNJCk67KKjTRRp6"
-            target="_blank"
-            class="inline-block bg-wedding-gold hover:bg-yellow-600 text-white text-xl font-bold py-5 px-12 rounded-full transition duration-300 transform hover:scale-110 shadow-lg border-2 border-transparent hover:border-white"
+          
+          <!-- Hidden iframe for form submission target -->
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+          <!-- Success Message (Initially Hidden) -->
+          <div id="rsvp-success-message" class="hidden text-center py-10">
+            <h3 class="text-3xl md:text-5xl font-serif text-wedding-gold mb-6 font-bold">Thank you for RSVPing!</h3>
+            <p class="text-xl text-gray-300">We verify your submission and look forward to celebrating with you.</p>
+          </div>
+
+          <!-- RSVP Form -->
+          <form 
+            id="rsvp-form"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSeo_fxDtPkwCi-1QVMYYggBsCeYCDMKfw4N5Yew7duo9kZWlw/formResponse" 
+            method="POST" 
+            target="hidden_iframe" 
+            class="max-w-xl mx-auto text-left space-y-6 px-4 sm:px-0"
+            onsubmit="document.getElementById('rsvp-form').classList.add('hidden'); document.getElementById('rsvp-success-message').classList.remove('hidden');"
           >
-            RSVP Now
-          </a>
-        </div>
+            
+            <!-- Question 1: Attending -->
+            <div class="flex flex-col">
+              <label class="mb-2 text-lg font-semibold text-wedding-gold">Will you be able to attend our wedding on July 18, 2026?</label>
+              <div class="space-y-2">
+                <label class="inline-flex items-center">
+                  <input type="radio" name="entry.1952271602" value="Yes" class="form-radio text-wedding-gold focus:ring-wedding-gold h-5 w-5 bg-gray-800 border-gray-600" required>
+                  <span class="ml-2">Yes</span>
+                </label>
+                <br>
+                <label class="inline-flex items-center">
+                  <input type="radio" name="entry.1952271602" value="No" class="form-radio text-wedding-gold focus:ring-wedding-gold h-5 w-5 bg-gray-800 border-gray-600">
+                  <span class="ml-2">No</span>
+                </label>
+                <br>
+                <label class="inline-flex items-center">
+                  <input type="radio" name="entry.1952271602" value="Maybe" class="form-radio text-wedding-gold focus:ring-wedding-gold h-5 w-5 bg-gray-800 border-gray-600">
+                  <span class="ml-2">Maybe</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 2: Party Size -->
+            <div class="flex flex-col">
+              <label for="entry.502389402" class="mb-2 text-lg font-semibold text-wedding-gold">How many people in your party will attend?</label>
+              <input type="number" name="entry.502389402" id="entry.502389402" class="w-full p-3 rounded bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-wedding-gold" required>
+            </div>
+
+            <!-- Question 3: Names -->
+            <div class="flex flex-col">
+              <label for="entry.1799460285" class="mb-2 text-lg font-semibold text-wedding-gold">What are the names of all the people in your party who will attend?</label>
+              <textarea name="entry.1799460285" id="entry.1799460285" rows="3" class="w-full p-3 rounded bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-wedding-gold" required></textarea>
+            </div>
+
+            <!-- Question 4: Address -->
+            <div class="flex flex-col">
+              <label for="entry.1149176143" class="mb-2 text-lg font-semibold text-wedding-gold">What is your address? (For mailing invitations)</label>
+              <textarea name="entry.1149176143" id="entry.1149176143" rows="3" class="w-full p-3 rounded bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-wedding-gold" required></textarea>
+            </div>
+
+            <!-- Question 5: Email -->
+            <div class="flex flex-col">
+              <label for="entry.1148382641" class="mb-2 text-lg font-semibold text-wedding-gold">What is your email address?</label>
+              <input type="email" name="entry.1148382641" id="entry.1148382641" class="w-full p-3 rounded bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-wedding-gold" required>
+            </div>
+
+            <!-- Question 6: Phone -->
+            <div class="flex flex-col">
+              <label for="entry.1885097761" class="mb-2 text-lg font-semibold text-wedding-gold">What is your cell phone number?</label>
+              <input type="tel" name="entry.1885097761" id="entry.1885097761" class="w-full p-3 rounded bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-wedding-gold" required>
+            </div>
+
+            <!-- Question 7: Dietary Restrictions -->
+            <div class="flex flex-col">
+              <label for="entry.971399381" class="mb-2 text-lg font-semibold text-wedding-gold">Do you have any dietary restrictions/special accommodations?</label>
+              <textarea name="entry.971399381" id="entry.971399381" rows="2" class="w-full p-3 rounded bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-wedding-gold"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center pt-6">
+              <button type="submit" class="inline-block bg-wedding-gold hover:bg-yellow-600 text-white text-xl font-bold py-4 px-12 rounded-full transition duration-300 transform hover:scale-105 shadow-lg border-2 border-transparent hover:border-white cursor-pointer">
+                Submit RSVP
+              </button>
+            </div>
+
+          </form>
       </div>
     </section>
 
@@ -226,7 +304,7 @@
                 1px 1px 0 #fff;
             "
           >
-            Lodgings
+            Lod<span class="secret-g" style="cursor: inherit;">g</span>in<span class="secret-g" style="cursor: inherit;">g</span>s
           </h2>
 
           <div class="grid lg:grid-cols-2 gap-10 items-center">
@@ -264,7 +342,7 @@
                 </p>
                 <p>
                   <span class="font-bold"
-                    >When bookingat Hyatt Place, provide our Group Code:</span
+                    >When booking at Hyatt Place, provide our Group Code:</span
                   >
                 </p>
                 <p>
@@ -288,7 +366,7 @@
 
     <!-- Section 5: About the Couple (Carousel) -->
     <section
-      class="lg:sticky lg:top-0 flex flex-col justify-center py-20 bg-gray-900 text-white shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-40 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl"
+      class="lg:sticky lg:top-0 flex flex-col justify-center py-20 bg-gray-900 text-white shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-40 mb-20 w-full lg:w-[80%] mx-0 lg:mx-auto rounded-none lg:rounded-xl"
     >
       <div class="container mx-auto px-6">
         <div class="max-w-6xl mx-auto">

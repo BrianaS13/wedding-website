@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Dash</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #111;
+        font-family: "Press Start 2P", cursive;
+        touch-action: none;
+      }
+      #gameCanvas {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        image-rendering: pixelated;
+      }
+      #ui-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #score-board {
+        text-align: right;
+        font-size: 24px;
+        color: #fff;
+        text-shadow: 2px 2px #000;
+      }
+      #start-screen,
+      #game-over-screen,
+      #win-screen {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 40px;
+        border: 4px solid #fff;
+        pointer-events: auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        min-width: 300px;
+      }
+      h1 {
+        color: #d4af37; /* Gold */
+        text-shadow: 3px 3px #000;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+      p {
+        line-height: 1.5;
+        margin-bottom: 20px;
+        font-size: 12px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      button {
+        background: #d4af37;
+        color: #000;
+        border: 4px solid #fff;
+        padding: 15px 30px;
+        font-family: "Press Start 2P", cursive;
+        font-size: 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: transform 0.1s;
+      }
+      button:hover {
+        transform: scale(1.05);
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ui-layer">
+      <div id="score-board">
+        HI <span id="high-score">000</span> SCORE
+        <span id="current-score">000</span>
+      </div>
+    </div>
+
+    <div id="start-screen">
+      <h1>Wedding Dash</h1>
+      <p>Help Briana & Neil reach the wedding!</p>
+      <p>Use UP/DOWN to switch lanes.</p>
+      <p>Dodge Research Papers & Professors.</p>
+      <button id="start-btn">START DRIVING</button>
+    </div>
+
+    <div id="game-over-screen" class="hidden">
+      <h1>GAME OVER</h1>
+      <p>Reviewer #2 rejected your paper!</p>
+      <button id="restart-btn">TRY AGAIN</button>
+    </div>
+
+    <div id="win-screen" class="hidden">
+      <h1>YOU MADE IT!</h1>
+      <p>Score: 718</p>
+      <div id="ending-scene" style="margin-top: 20px"></div>
+      <button id="home-btn">BACK TO WEBSITE</button>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      // Game State
+      let frames = 0;
+      let score = 0;
+      let highScore = localStorage.getItem("weddingGameHighScore_v2") || 0;
+      let gameSpeed = 6;
+      let isPlaying = false;
+      let currentDriver = "briana"; // 'briana' or 'neil'
+      let shakeTime = 0; // Frames remaining for shake
+      const WIN_SCORE = 718;
+
+      // Elements
+      const scoreEl = document.getElementById("current-score");
+      const highScoreEl = document.getElementById("high-score");
+      const startScreen = document.getElementById("start-screen");
+      const gameOverScreen = document.getElementById("game-over-screen");
+      const winScreen = document.getElementById("win-screen");
+
+      highScoreEl.innerText = highScore.toString().padStart(3, "0");
+
+      // Assets
+      const ASSETS = {
+        briana: new Image(),
+        neil: new Image(),
+        paper: new Image(),
+        professor: new Image(),
+        heart: new Image(),
+      };
+      ASSETS.briana.src = "sprites/briana_driving.png";
+      ASSETS.neil.src = "sprites/neil_driving.png";
+      ASSETS.paper.src = "sprites/research_paper.png";
+      ASSETS.professor.src = "sprites/professor.png";
+      ASSETS.heart.src = "sprites/heart.png";
+
+      // Constants
+      const LANES = [0.2, 0.5, 0.8]; // Y positions as percentage of height
+      const PLAYER_HEIGHT = 120; // Target height for player
+      const OBSTACLE_HEIGHT = 120; // Target height for obstacles
+
+      // Player Object
+      const player = {
+        x: 100,
+        y: 0,
+        lane: 1,
+        width: 0, // Calculated from aspect ratio
+        height: PLAYER_HEIGHT,
+        targetY: 0,
+
+        update: function () {
+          // Smooth movement to target lane
+          this.targetY = canvas.height * LANES[this.lane] - this.height / 2;
+          this.y += (this.targetY - this.y) * 0.2;
+        },
+
+        draw: function () {
+          let drawX = this.x;
+          let drawY = this.y;
+
+          // Shake Effect
+          if (shakeTime > 0) {
+            drawX += (Math.random() - 0.5) * 20; // Strong shake
+            drawY += (Math.random() - 0.5) * 20;
+            shakeTime--;
+            if (shakeTime === 0) {
+              switchDriver();
+            }
+          }
+
+          const sprite =
+            currentDriver === "briana" ? ASSETS.briana : ASSETS.neil;
+
+          if (sprite.complete && sprite.naturalWidth > 0) {
+            const ratio = sprite.naturalWidth / sprite.naturalHeight;
+            this.width = this.height * ratio;
+            ctx.drawImage(sprite, drawX, drawY, this.width, this.height);
+          } else {
+            // Fallback
+            this.width = 150;
+            ctx.fillStyle = "red";
+            ctx.fillRect(drawX, drawY, this.width, this.height);
+          }
+        },
+      };
+
+      // Obstacles
+      let obstacles = [];
+
+      class Obstacle {
+        constructor() {
+          this.lane = Math.floor(Math.random() * 3);
+          this.x = canvas.width;
+          this.baseY = canvas.height * LANES[this.lane] - OBSTACLE_HEIGHT / 2; // Centered
+          this.y = this.baseY;
+          this.height = OBSTACLE_HEIGHT;
+          this.width = 0; // Calculated
+          this.type = Math.random() > 0.5 ? "paper" : "professor";
+          this.markedForDeletion = false;
+          this.passed = false;
+          this.bounceIdx = Math.random() * 100;
+        }
+
+        update() {
+          this.x -= gameSpeed;
+
+          // Slow Bouncing Animation
+          this.bounceIdx += 0.05;
+          this.y = this.baseY + Math.sin(this.bounceIdx) * 15;
+
+          if (this.x < -300) {
+            // Off screen
+            this.markedForDeletion = true;
+          }
+
+          // Score Counting (Pass player)
+          if (!this.passed && this.x + this.width < player.x) {
+            this.passed = true;
+            incrementScore();
+          }
+
+          // Collision
+          // Calculate actual width if loaded, else default
+          let hitW = this.width || 100;
+          let hitH = this.height;
+
+          // Smaller hitbox
+          const padding = 25;
+          const hitX = this.x + padding;
+          const hitY = this.y + padding;
+
+          hitW -= padding * 2;
+          hitH -= padding * 2;
+
+          // Player Rect
+          const pPadding = 25;
+          const pX = player.x + pPadding;
+          const pY = player.y + pPadding;
+          const pW = player.width - pPadding * 2;
+          const pH = player.height - pPadding * 2;
+
+          // Lane-based major check first
+          if (this.lane === player.lane) {
+            // X-axis and rough Y check
+            if (
+              pX < hitX + hitW &&
+              pX + pW > hitX &&
+              Math.abs(
+                player.y + player.height / 2 - (this.y + this.height / 2),
+              ) < 80
+            ) {
+              gameOver();
+            }
+          }
+        }
+
+        draw() {
+          const sprite =
+            this.type === "paper" ? ASSETS.paper : ASSETS.professor;
+          if (sprite.complete && sprite.naturalWidth > 0) {
+            const ratio = sprite.naturalWidth / sprite.naturalHeight;
+            this.width = this.height * ratio;
+            ctx.drawImage(sprite, this.x, this.y, this.width, this.height);
+          } else {
+            this.width = 100;
+            ctx.fillStyle = this.type === "paper" ? "#fff" : "#8B4513";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+          }
+        }
+      }
+
+      function incrementScore() {
+        score++;
+        scoreEl.innerText = score.toString().padStart(3, "0");
+
+        // Switch Driver Shake Event every 50 points
+        if (score > 0 && score % 50 === 0) {
+          triggerShake();
+        }
+
+        // Win
+        if (score >= WIN_SCORE) {
+          gameWin();
+        }
+
+        // Speed
+        if (score % 20 === 0) gameSpeed += 0.6;
+      }
+
+      function triggerShake() {
+        shakeTime = 30; // 0.5 seconds at 60fps
+      }
+
+      function switchDriver() {
+        currentDriver = currentDriver === "briana" ? "neil" : "briana";
+      }
+
+      // Input
+      window.addEventListener("keydown", (e) => {
+        if (!isPlaying) return;
+        if (e.key === "ArrowUp") {
+          if (player.lane > 0) player.lane--;
+        } else if (e.key === "ArrowDown") {
+          if (player.lane < 2) player.lane++;
+        }
+      });
+
+      let touchStartY = 0;
+      window.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartY = e.changedTouches[0].clientY; // Use clientY
+        },
+        { passive: false },
+      );
+
+      // Prevent default scrolling behavior on the canvas
+      canvas.addEventListener(
+        "touchmove",
+        (e) => {
+          if (isPlaying) e.preventDefault();
+        },
+        { passive: false },
+      );
+
+      window.addEventListener(
+        "touchend",
+        (e) => {
+          if (!isPlaying) return;
+          const touchEndY = e.changedTouches[0].clientY;
+          if (touchStartY - touchEndY > 30) {
+            // Reduced threshold for responsiveness
+            // Swipe Up
+            if (player.lane > 0) player.lane--;
+          } else if (touchEndY - touchStartY > 30) {
+            // Swipe Down
+            if (player.lane < 2) player.lane++;
+          }
+        },
+        { passive: false },
+      );
+
+      // Loop
+      function animate() {
+        if (!isPlaying && score < WIN_SCORE) return; // Stop loop if paused/over, keep running for win anim? No.
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Background (Road)
+        ctx.fillStyle = "#111";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Road Texture (Moving dots)
+        ctx.fillStyle = "#555"; // Brighter for better visibility
+        for (let i = 0; i < 80; i++) {
+          // Pseudo-random moving texture
+          let offset = (i * 137) % canvas.width;
+          let speedMod = 1; // Simplify speed
+
+          // Move texture Left: x decreases as frames increase
+          let x =
+            (canvas.width +
+              offset -
+              ((frames * gameSpeed * speedMod) % canvas.width)) %
+            canvas.width;
+          let y = (i * 31) % canvas.height;
+
+          let size = (i % 3) + 2;
+          ctx.fillRect(x, y, size, size);
+        }
+
+        // Lanes
+        ctx.strokeStyle = "#fff";
+        ctx.lineWidth = 6;
+        ctx.setLineDash([80, 80]);
+        // Positive offset moves dash pattern "Left" relative to view
+        ctx.lineDashOffset = frames * gameSpeed;
+
+        ctx.beginPath();
+        let lane1Y = canvas.height * ((LANES[0] + LANES[1]) / 2);
+        let lane2Y = canvas.height * ((LANES[1] + LANES[2]) / 2);
+
+        ctx.moveTo(0, lane1Y);
+        ctx.lineTo(canvas.width, lane1Y);
+        ctx.moveTo(0, lane2Y);
+        ctx.lineTo(canvas.width, lane2Y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Player
+        player.update();
+        player.draw();
+
+        // Obstacles
+        if (Math.random() < 0.015) {
+          // Spawn chance
+          // Check gap
+          let canSpawn = true;
+          obstacles.forEach((obs) => {
+            if (canvas.width - obs.x < 400) canSpawn = false;
+          });
+          if (canSpawn) obstacles.push(new Obstacle());
+        }
+
+        obstacles.forEach((obs) => {
+          obs.update();
+          obs.draw();
+        });
+        obstacles = obstacles.filter((obs) => !obs.markedForDeletion);
+
+        frames++;
+        if (isPlaying) requestAnimationFrame(animate);
+      }
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resize);
+      resize();
+
+      function startGame() {
+        score = 0;
+        frames = 0;
+        gameSpeed = 8; // Faster start
+        obstacles = [];
+        player.lane = 1;
+        player.y = canvas.height * LANES[1];
+        isPlaying = true;
+        scoreEl.innerText = "000";
+
+        startScreen.classList.add("hidden");
+        gameOverScreen.classList.add("hidden");
+        winScreen.classList.add("hidden");
+
+        animate();
+      }
+
+      function gameOver() {
+        isPlaying = false;
+        obstacles = [];
+        if (score > highScore) {
+          highScore = score;
+          localStorage.setItem("weddingGameHighScore_v2", highScore);
+          highScoreEl.innerText = highScore.toString().padStart(3, "0");
+        }
+        gameOverScreen.classList.remove("hidden");
+      }
+
+      function gameWin() {
+        isPlaying = false;
+        // Clear can be skipped, UI overlay covers center
+        winScreen.classList.remove("hidden");
+
+        // Draw heart ending in canvas or create dynamic UI?
+        // The request said "show an ending scene of both cars arriving at a heart"
+        // Let's do a simple render ON TOP of the win screen or IN the ending-scene div
+
+        const scene = document.getElementById("ending-scene");
+        scene.innerHTML = ""; // clear
+
+        // Create scene elements via DOM for cleaner layout in UI box
+        const heartImg = document.createElement("img");
+        heartImg.src = ASSETS.heart.src;
+        heartImg.style.width = "100px";
+        heartImg.style.verticalAlign = "middle";
+
+        const bImg = document.createElement("img");
+        bImg.src = ASSETS.briana.src;
+        bImg.style.width = "80px";
+        bImg.style.marginRight = "20px";
+        bImg.style.verticalAlign = "middle";
+
+        const nImg = document.createElement("img");
+        nImg.src = ASSETS.neil.src;
+        nImg.style.width = "80px";
+        nImg.style.marginLeft = "20px";
+        nImg.style.verticalAlign = "middle";
+
+        scene.appendChild(bImg);
+        scene.appendChild(heartImg);
+        scene.appendChild(nImg);
+
+        if (score > highScore) {
+          highScore = score;
+          score = WIN_SCORE;
+          localStorage.setItem("weddingGameHighScore_v2", highScore);
+          highScoreEl.innerText = highScore.toString().padStart(3, "0");
+        }
+      }
+
+      document.getElementById("start-btn").addEventListener("click", startGame);
+      document
+        .getElementById("restart-btn")
+        .addEventListener("click", startGame);
+      document.getElementById("home-btn").addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>
