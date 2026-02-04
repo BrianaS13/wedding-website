@@ -127,7 +127,7 @@
       let frames = 0;
       let score = 0;
       let highScore = localStorage.getItem("weddingGameHighScore_v2") || 0;
-      let gameSpeed = 6;
+      let gameSpeed = 10;
       let isPlaying = false;
       let currentDriver = "briana"; // 'briana' or 'neil'
       let shakeTime = 0; // Frames remaining for shake
@@ -306,7 +306,7 @@
         }
 
         // Speed
-        if (score % 20 === 0) gameSpeed += 0.6;
+        if (score % 20 === 0) gameSpeed += 1.0;
       }
 
       function triggerShake() {
